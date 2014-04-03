@@ -21,7 +21,7 @@
     <bpmn2:endEvent id="EndEvent_4" name="Order rejected">
       <bpmn2:incoming>SequenceFlow_17</bpmn2:incoming>
     </bpmn2:endEvent>
-    <bpmn2:userTask id="Task_6" name="Approve Order">
+    <bpmn2:userTask id="Task_6" name="Approve Order" camunda:formKey="app:approveorder.jsf">
       <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_13</bpmn2:outgoing>
     </bpmn2:userTask>
@@ -32,10 +32,10 @@
       <bpmn2:outgoing>SequenceFlow_12</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:sequenceFlow id="SequenceFlow_10" name="Yes" sourceRef="ExclusiveGateway_1" targetRef="ServiceTask_1">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${true}</bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${orderBusinessLogic.getOrder(orderId).approved}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="SequenceFlow_12" name="No" sourceRef="ExclusiveGateway_1" targetRef="Task_7">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${false}</bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${not orderBusinessLogic.getOrder(orderId).approved}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:serviceTask id="Task_7" name="Send Rejection Email" camunda:expression="${true}">
       <bpmn2:incoming>SequenceFlow_12</bpmn2:incoming>
