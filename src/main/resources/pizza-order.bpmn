@@ -37,7 +37,7 @@
     <bpmn2:sequenceFlow id="SequenceFlow_12" name="No" sourceRef="ExclusiveGateway_1" targetRef="Task_7">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${not orderBusinessLogic.getOrder(orderId).approved}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:serviceTask id="Task_7" name="Send Rejection Email" camunda:expression="${true}">
+    <bpmn2:serviceTask id="Task_7" name="Send Rejection Email" camunda:expression="${orderBusinessLogic.rejectOrder(execution)}">
       <bpmn2:incoming>SequenceFlow_12</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_17</bpmn2:outgoing>
     </bpmn2:serviceTask>
