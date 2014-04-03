@@ -5,7 +5,7 @@
       <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
     </bpmn2:startEvent>
     <bpmn2:sequenceFlow id="SequenceFlow_1" name="" sourceRef="StartEvent_1" targetRef="Task_1"/>
-    <bpmn2:serviceTask id="Task_1" camunda:expression="${true}" name="Persist Order">
+    <bpmn2:serviceTask id="Task_1" camunda:expression="${orderBusinessLogic.persistOrder(execution)}" name="Persist Order">
       <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
     </bpmn2:serviceTask>
