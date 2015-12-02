@@ -6,10 +6,10 @@ db:
   ports:
     - "5432:5432"
   volumes:
-    - ../sql/create/postgres_engine_7.3.0.sql:/docker-entrypoint-initdb.d/0_postgres_engine_7.3.0.sql
-    - ../sql/create/postgres_identity_7.3.0.sql:/docker-entrypoint-initdb.d/1_postgres_identity_7.3.0.sql
+    - ./src/sql/postgres_engine_7.3.0.sql:/docker-entrypoint-initdb.d/postgres_engine_7.3.0.sql
+    - ./src/sql/postgres_identity_7.3.0.sql:/docker-entrypoint-initdb.d/postgres_identity_7.3.0.sql
 
-bpm0:
+bpm:
   image: camunda/camunda-bpm-platform:wildfly-7.3.0
   environment:
     - DB_DRIVER=postgresql
